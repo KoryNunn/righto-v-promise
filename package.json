@@ -1,0 +1,16 @@
+{
+  "name": "righto-v-promise",
+  "version": "1.0.0",
+  "description": "Get a user from the DB.",
+  "main": "db.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.0",
+    "foreign": "^1.0.4",
+    "righto": "^1.1.0"
+  }
+}
