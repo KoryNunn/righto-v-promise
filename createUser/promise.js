@@ -50,37 +50,41 @@ module.exports = function(callback){
             });
         });
 
-    var user1 = Promise.join(address1, profile1, function(address, profile){
-            return new Promise(function(resolve, reject){
-                db.Users.create({
-                    name: 'bob smith',
-                    addressId: address.id,
-                    profileId: profile.id
-                }, function(error, result){
-                    if(error){
-                        return reject(error);
-                    }
+    function createUser1Data(address, profile){
+        return new Promise(function(resolve, reject){
+            db.Users.create({
+                name: 'bob smith',
+                addressId: address.id,
+                profileId: profile.id
+            }, function(error, result){
+                if(error){
+                    return reject(error);
+                }
 
-                    resolve(result);
-                });
+                resolve(result);
             });
         });
+    }
 
-    var user2 = Promise.join(address2, profile2, function(address, profile){
-            return new Promise(function(resolve, reject){
-                db.Users.create({
-                    name: 'john down',
-                    addressId: address.id,
-                    profileId: profile.id
-                }, function(error, result){
-                    if(error){
-                        return reject(error);
-                    }
+    function createUser2Data(address, profile){
+        return new Promise(function(resolve, reject){
+            db.Users.create({
+                name: 'john down',
+                addressId: address.id,
+                profileId: profile.id
+            }, function(error, result){
+                if(error){
+                    return reject(error);
+                }
 
-                    resolve(result);
-                });
+                resolve(result);
             });
         });
+    }
+
+    var user1 = Promise.join(address1, profile1, createUser1Data);
+
+    var user2 = Promise.join(address2, profile2, createUser2Data);
 
     Promise.all([user1, user2])
     .then(function(result){
