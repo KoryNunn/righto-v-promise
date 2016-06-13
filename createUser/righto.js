@@ -18,25 +18,17 @@ module.exports = function(callback){
             blurb: 'things'
         });
 
-    function createUser1Data(address, profile, done){
-        db.Users.create({
+    var user1 = righto(db.Users.create, {
             name: 'bob smith',
-            addressId: address.id,
-            profileId: profile.id
-        }, done);
-    }
+            addressId: address1.get('id'),
+            profileId: profile1.get('id')
+        });
 
-    function createUser2Data(address, profile, done){
-        db.Users.create({
+    var user2 = righto(db.Users.create, {
             name: 'john down',
-            addressId: address.id,
-            profileId: profile.id
-        }, done);
-    }
-
-    var user1 = righto(createUser1Data, address1, profile1);
-
-    var user2 = righto(createUser2Data, address2, profile2);
+            addressId: address2.get('id'),
+            profileId: profile2.get('id')
+        });
 
     righto.all(user1, user2)(callback);
 };
