@@ -176,7 +176,7 @@ or unsuccessfuly. There is no ambiguity to the error I get when I ask for
 `thing`, either I don't get one, because it worked, or I did, because of some
 business-logicy reason that wasn't cats.
 
-* Throws mic *
+**Throws mic**
 
 `Uncaught ReferenceError: mic is not defined(…)`
 
