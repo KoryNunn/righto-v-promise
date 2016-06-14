@@ -150,15 +150,15 @@ Thrown errors should crash.
 Righto!:
 
 ```
-var thing = righto(function(resolve, reject){
+var thing = righto(function(done){
 
         catWalkingAcrossTheKeyboard();
 
         setTimeout(function(){
             if(Math.random() > 0.5){
-                resolve('foo');
+                done(null, 'foo');
             }else{
-                reject('bar');
+                done('bar');
             }
         }, 1000);
     });
