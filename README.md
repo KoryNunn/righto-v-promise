@@ -9,7 +9,7 @@ I have several gripes with promises, so I made a lib called righto.
 promises aren't horrible to work with
 if you only deal with promises either side:
 
-```
+```javascript
 function doAsyncThing(){
     function getUserProfile(user){
         return db.Profile.get({id: user.profileId})
@@ -32,7 +32,7 @@ function doAsyncThing(){
 
 But then here is the same solution using righto:
 
-```
+```javascript
 function doAsyncThing(){
     var user = db.Users.get({id: 1});
 
@@ -53,7 +53,7 @@ hit the boundary between promises and not-promises.
 
 For example, simply calling a CPS API with promises:
 
-```
+```javascript
 var address = new Promise(function(resolve, reject){
     db.Addresses.get({ id: 3 }, function(error, result){
         if(error){
@@ -69,7 +69,7 @@ which is a mess of code, for no good reason.
 
 The same solution in righto:
 
-```
+```javascript
 var address = righto(db.Addresses.get, { id: 3 });
 ```
 
@@ -107,7 +107,7 @@ I could almost forgive the rest of the issues, but they way
 promises handle errors absolutly shuts down any chance I'd
 use or recommend them.
 
-```
+```javascript
 var thing = new Promise(function(resolve, reject){
 
         catWalkingAcrossTheKeyboard();
@@ -149,7 +149,7 @@ Thrown errors should crash.
 
 Righto!:
 
-```
+```javascript
 var thing = righto(function(done){
 
         catWalkingAcrossTheKeyboard();
