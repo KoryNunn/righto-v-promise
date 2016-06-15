@@ -11,22 +11,13 @@ if you only deal with promises either side:
 
 ```javascript
 function doAsyncThing(){
-    function getUserProfile(user){
-        return db.Profile.get({id: user.profileId})
-    }
-
-    var user = db.Users.get({id: 1});
-
-    var profile = user.then(getUserProfile);
-
-    function combine(user, profile){
-        return new Promise.resolve({id: user.profileId});
-    }
+    var user = promiseDb.Users.get({id: 1});
+    var profile = user.then(user => promiseDb.Profile.get({id: user.profileId}));
 
     // Totally not natively implemented or even specced
     // method that exists in bluebird
     //               v
-    return Promise.join(user, profile, combine);
+    return Promise.join(user, profile, (user, profile) => ({...user, profile}));
 }
 ```
 
@@ -34,19 +25,27 @@ But then here is the same solution using righto:
 
 ```javascript
 function doAsyncThing(){
-    var user = db.Users.get({id: 1});
+    var user = rightoDb.Users.get({id: 1});
+    var profile = rightoDb.Profile.get({id: user.profileId});
 
-    var profile = db.Profile.get(user.get(user => ({id: user.profileId})));
-
-    function combine(user, profile){
-        return {...user, profile};
-    }
-
-    return righto.sync(combine, user, profile);
+    return righto.sync((user, profile) => ({...user, profile}), user, profile);
 }
 ```
 
 Ok, already a touch cleaner.
+
+And once `Proxy` is supported everywhere (or now if you know it is), you can do:
+
+```javascript
+var righto = require('righto').proxy; // <- exists in chrome, node 6, etc..
+
+function doAsyncThing(){
+    var user = rightoDb.Users.get({id: 1});
+    var profile = rightoDb.Profile.get({user.profileId});
+
+    return righto.sync(user => ({...user, profile}), user);
+}
+```
 
 But the real issues appear when you
 hit the boundary between promises and not-promises.
