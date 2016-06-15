@@ -18,13 +18,13 @@ module.exports = function(callback){
             blurb: 'things'
         });
 
-    var user1 = db.Users.create(righto.resolve({
+    var user1 = righto(db.Users.create, righto.resolve({
             name: 'bob smith',
             addressId: address1.id,
             profileId: profile1.id
         }));
 
-    var user2 = db.Users.create(righto.resolve({
+    var user2 = righto(db.Users.create, righto.resolve({
             name: 'john down',
             addressId: address2.id,
             profileId: profile2.id
