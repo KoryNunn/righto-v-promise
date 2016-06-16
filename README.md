@@ -26,7 +26,7 @@ But then here is the same solution using righto:
 ```javascript
 function doAsyncThing(){
     var user = rightoDb.Users.get({id: 1});
-    var profile = rightoDb.Profile.get({id: user.profileId});
+    var profile = rightoDb.Profile.get({id: user.get('profileId')});
 
     return righto.sync((user, profile) => ({...user, profile}), user, profile);
 }
