@@ -41,7 +41,7 @@ var righto = require('righto').proxy; // <- exists in chrome, node 6, etc..
 
 function doAsyncThing(){
     var user = rightoDb.Users.get({id: 1});
-    var profile = rightoDb.Profile.get({user.profileId});
+    var profile = rightoDb.Profile.get({id: user.profileId});
 
     return righto.sync(user => ({...user, profile}), user);
 }
