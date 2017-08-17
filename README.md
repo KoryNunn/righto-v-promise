@@ -109,16 +109,16 @@ use or recommend them.
 ```javascript
 var thing = new Promise(function(resolve, reject){
 
-        catWalkingAcrossTheKeyboard();
+    catWalkingAcrossTheKeyboard();
 
-        setTimeout(function(){
-            if(Math.random() > 0.5){
-                resolve('foo');
-            }else{
-                reject('bar');
-            }
-        }, 1000);
-    });
+    setTimeout(function(){
+        if(Math.random() > 0.5){
+            resolve('foo');
+        }else{
+            reject('bar');
+        }
+    }, 1000);
+});
 
 thing.then(function(foo){
         console.log(foo);
@@ -151,16 +151,16 @@ Righto!:
 ```javascript
 var thing = righto(function(done){
 
-        catWalkingAcrossTheKeyboard();
+    catWalkingAcrossTheKeyboard();
 
-        setTimeout(function(){
-            if(Math.random() > 0.5){
-                done(null, 'foo');
-            }else{
-                done('bar');
-            }
-        }, 1000);
-    });
+    setTimeout(function(){
+        if(Math.random() > 0.5){
+            done(null, 'foo');
+        }else{
+            done('bar');
+        }
+    }, 1000);
+});
 
 thing(function(error, foo){
     console.log(error, foo);
