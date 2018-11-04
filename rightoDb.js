@@ -1,10 +1,12 @@
 var models = require('./db'),
-    righto = require('righto');
+    righto = require('righto').proxy;
 
 function createRightoMethod(model, key){
     return function(){
         return righto.apply(null, [model[key]]
-            .concat(Array.prototype.slice.call(arguments))
+            .concat(Array.prototype.slice.call(arguments).map(function(argument){
+                return righto.resolve(argument, true);
+            }))
         );
     };
 }

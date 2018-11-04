@@ -1,4 +1,4 @@
-var righto = require('righto'),
+var righto = require('righto').proxy,
     db = require('../db');
 
 module.exports = function(callback){
@@ -18,25 +18,17 @@ module.exports = function(callback){
             blurb: 'things'
         });
 
-    function createUser1Data(address, profile, done){
-        db.Users.create({
+    var user1 = righto(db.Users.create, righto.resolve({
             name: 'bob smith',
-            addressId: address.id,
-            profileId: profile.id
-        }, done);
-    }
+            addressId: address1.id,
+            profileId: profile1.id
+        }));
 
-    function createUser2Data(address, profile, done){
-        db.Users.create({
+    var user2 = righto(db.Users.create, righto.resolve({
             name: 'john down',
-            addressId: address.id,
-            profileId: profile.id
-        }, done);
-    }
-
-    var user1 = righto(createUser1Data, address1, profile1);
-
-    var user2 = righto(createUser2Data, address2, profile2);
+            addressId: address2.id,
+            profileId: profile2.id
+        }));
 
     righto.all(user1, user2)(callback);
 };
