@@ -26,7 +26,7 @@ easier to understand, and easier to find, but it will
 take a keen eye and maybe a bit of time in the
 debugger to find it.
 
-# Example 3: rightoExeption.js
+# Example 3: rightoException.js
 
 This is the righto-version of the spelling mistake
 situation above.
@@ -36,10 +36,14 @@ you get an exeption telling you what's wrong, and
 where in your code the problem exists, down to the
 character.
 
-# Example 4:
+# Example 4: rightoExpectedResult.js
 
 This is the closest thing to the first example, except
 that there is no subtle way to accidentally not handle
 rejections with righto.
 
 This example works exactly as intended.
+
+# Example 5 - Bonus: rightoIterateException.js
+
+Same as above, but you don't have to learn how callbacks work.
