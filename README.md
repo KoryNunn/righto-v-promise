@@ -137,7 +137,7 @@ Want to know if you got a business error, or you just mashed the keyboard?
 write code to try and differentiate them.
 
 This is, in my opinion, horrible. If I make a code mistake, I want my process to crash.
-I want to know about it BEFORE it deploy my code. before I even COMMIT my code!
+I want to know about it BEFORE i deploy my code. before I even COMMIT my code!
 
 I want it to halt execution, tell me the exact line number that has a problem,
 and then dump me at the terminal as if to say "Oi! ya dun goofed RIGHT HERE!"
